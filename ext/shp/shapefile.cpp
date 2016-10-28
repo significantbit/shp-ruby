@@ -152,6 +152,19 @@ VALUE shapefile::create_object(VALUE klass, VALUE shapeType, VALUE shapeIndex, V
     }
   }
 
+  for (int i = 0; i < FIX2INT(numberOfVertices); ++i) {
+    xVertices[i] = NUM2DBL(rb_ary_entry(arrayOfX, i));
+    yVertices[i] = NUM2DBL(rb_ary_entry(arrayOfY, i));
+
+    if (zVertices) {
+      zVertices[i] = NUM2DBL(rb_ary_entry(arrayOfZ, i));
+    }
+
+    if (mVertices) {
+      zVertices[i] = NUM2DBL(rb_ary_entry(arrayOfM, i));
+    }
+  }
+
   SHPObject *object = SHPCreateObject(FIX2INT(shapeType),
                                       FIX2INT(shapeIndex),
                                       FIX2INT(numberOfParts),

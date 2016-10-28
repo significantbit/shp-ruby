@@ -156,6 +156,99 @@ describe "SHP" do
     @shape = SHP::Shapefile.create_object(5,1, 1, [0],nil,x_values.count, x_values, y_values, nil, nil)
   end
 
+  context 'create_object' do
+    before(:each) do
+      sni_office = [[-82.72932529449463, 27.93789618055838],
+                    [-82.72932529449463, 27.93768765436987],
+                    [-82.72909998893738, 27.93767817589719],
+                    [-82.72911071777344, 27.93719003343022],
+                    [-82.72869229316710, 27.93717581565543],
+                    [-82.72868156433105, 27.93741277832466],
+                    [-82.72886931896210, 27.93741751757274],
+                    [-82.72886931896210, 27.93788670210399],
+                    [-82.72932529449463, 27.93789618055838]]
+
+      x_values = sni_office.map { |v| v[0] }
+      y_values = sni_office.map { |v| v[1] }
+
+      @shp = SHP::Shapefile.create('testfile_polygons', 5)
+      @shape = SHP::Shapefile.create_object(5, -1, 0, nil, nil, x_values.count, x_values, y_values, nil, nil)
+      @shp.write_object(-1, @shape)
+      @obj = @shp.read_object(0)
+    end
+    it 'should return the shape type' do
+      expect(@obj.get_shape_type).to eq(5)
+    end
+
+    it 'should return the shape id' do
+      expect(@obj.get_shape_id).to eq(0)
+    end
+
+    it 'should return the shape part count' do
+      expect(@obj.get_shape_parts).to eq(1)
+    end
+
+    it 'should return the shape part start offsets' do
+      expect(@obj.get_shape_part_starts).to eq([0])
+    end
+
+    it 'should return the shape part types' do
+      expect(@obj.get_shape_part_types).to eq([5]) # [SHPP_RING]
+    end
+
+    it 'should return the vertex count' do
+      expect(@obj.get_vertex_count).to eq(9)
+    end
+
+    it 'should return the x values' do
+      expect(@obj.get_x).to eq([-82.72932529449463, -82.72932529449463, -82.72909998893738, -82.72911071777344, -82.7286922931671, -82.72868156433105, -82.7288693189621, -82.7288693189621, -82.72932529449463])
+    end
+
+    it 'should return the y values' do
+      expect(@obj.get_y).to eq([27.93789618055838, 27.93768765436987, 27.93767817589719, 27.93719003343022, 27.93717581565543, 27.93741277832466, 27.93741751757274, 27.93788670210399, 27.93789618055838])
+    end
+
+    it 'should return the z values' do
+      expect(@obj.get_z).to eq([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+    end
+
+    it 'should return the m values' do
+      expect(@obj.get_z).to eq([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+    end
+
+    it 'should return the x min' do
+      expect(@obj.get_x_min).to eq(-82.72932529449463)
+    end
+
+    it 'should return the y min' do
+      expect(@obj.get_y_min).to eq(27.93717581565543)
+    end
+
+    it 'should return the z min' do
+      expect(@obj.get_z_min).to eq(0)
+    end
+
+    it 'should return the m min' do
+      expect(@obj.get_m_min).to eq(0)
+    end
+
+    it 'should return the x max' do
+      expect(@obj.get_x_max).to eq(-82.72868156433105)
+    end
+
+    it 'should return the y max' do
+      expect(@obj.get_y_max).to eq(27.93789618055838)
+    end
+
+    it 'should return the z max' do
+      expect(@obj.get_z_max).to eq(0)
+    end
+
+    it 'should return the m max' do
+      expect(@obj.get_m_max).to eq(0)
+    end
+  end
+
   context 'shp' do
     before(:each) do
       sni_office = [[-82.72932529449463, 27.93789618055838],
