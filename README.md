@@ -1,4 +1,4 @@
-# shp-ruby [![Build Status](https://secure.travis-ci.org/spatialnetworks/shp-ruby.png)](http://travis-ci.org/spatialnetworks/shp-ruby)
+# shp-ruby [![Build Status](https://travis-ci.org/significantbit/shp-ruby.svg?branch=master)](https://travis-ci.org/significantbit/shp-ruby)
 
 Native bindings for Shapelib. This gem includes an embedded copy of Shapelib so it doesn't require any
 system libraries to be installed and can be installed with just gem/bundler.

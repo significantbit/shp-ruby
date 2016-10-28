@@ -2,11 +2,11 @@
 require File.expand_path('../lib/shp/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Zac McCormick"]
-  gem.email         = ["zac.mccormick@gmail.com"]
+  gem.authors       = ["Zac McCormick", 'Peter Hagström']
+  gem.email         = ["zac.mccormick@gmail.com", 'peter@significantbit.se']
   gem.description   = %q{ESRI Shapefile bindings for ruby using shapelib}
   gem.summary       = %q{ESRI Shapefile bindings for ruby using shapelib. Currently contains native extensions for ShapeLib 1.3}
-  gem.homepage      = "https://github.com/spatialnetworks/shp-ruby"
+  gem.homepage      = "https://github.com/significantbit/shp-ruby"
   gem.licenses      = ['BSD']
 
   gem.files         = `git ls-files`.split($\)
